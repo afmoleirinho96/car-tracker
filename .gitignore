@@ -1,0 +1,21 @@
+**/bin/
+**/.classpath
+**/.gradle/
+**/.project/
+**/settings/
+**/build/
+**/build.properties
+/.idea/
+
+### IntelliJ IDEA ###
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+
+### VS Code ###
+**/.vscode/
+
