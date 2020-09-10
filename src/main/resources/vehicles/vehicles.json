@@ -1,0 +1,17 @@
+[
+  {
+    "vin": "123",
+    "owner": "André Moleirinho",
+    "plateDate": "10/2010"
+  },
+  {
+    "vin": "234",
+    "owner": "Mário Moleirinho",
+    "plateDate": "10/2010"
+  },
+  {
+    "vin": "456",
+    "owner": "Tiago Moleirinho",
+    "plateDate": "10/2010"
+  }
+]
