@@ -4,6 +4,7 @@ import com.automotive.tracker.model.Vehicle;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -26,11 +27,22 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
     @Override
     public Stream<Vehicle> findAll() {
-        return null;
+        return store.values().stream().filter(Objects::nonNull);
     }
 
     @Override
-    public Optional<Vehicle> findById(String s) {
-        return Optional.empty();
+    public Optional<Vehicle> findById(String id) {
+        return Optional.ofNullable(store.get(id));
     }
+
+    @Override
+    public void deleteById(String id) {
+        store.remove(id);
+    }
+
+    @Override
+    public void deleteAll() {
+        store.clear();
+    }
+
 }
