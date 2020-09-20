@@ -1,5 +1,6 @@
 package com.automotive.tracker.rest;
 
+import com.automotive.tracker.exceptions.VehicleNotFoundException;
 import com.automotive.tracker.services.VehicleService;
 import com.automotive.tracker.services.VinDecoderService;
 import com.automotive.tracker.to.rest.vindecode.VinDecodeDto;
@@ -21,11 +22,23 @@ public class VinDecoderResource {
 
     @GetMapping(path = "vin-info")
     public VinInfoDto getVinInfo(@PathVariable String vehicleId) {
-        return vinDecoderService.getVinInfo(vehicleId);
+        VinInfoDto vinInfo = vinDecoderService.getVinInfo(vehicleId);
+
+        if (vinInfo.getVinInfo() == null) {
+            throw VehicleNotFoundException.VinDecodeNotFound(vehicleId);
+        }
+
+        return vinInfo;
     }
 
     @GetMapping(path = "vin-info-decoded", produces = "application/json")
     public VinDecodeDto getVinInfoDecoded(@PathVariable String vehicleId) {
+        VinDecodeDto vinDecode = vinDecoderService.decodeVinInfo(vehicleId);
+
+        if (vinDecode.getVinDecode() == null) {
+            throw VehicleNotFoundException.VinDecodeNotFound(vehicleId);
+        }
+
         return vinDecoderService.decodeVinInfo(vehicleId);
     }
 

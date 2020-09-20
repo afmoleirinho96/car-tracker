@@ -6,6 +6,7 @@ import com.automotive.tracker.mapper.VinDecodeMapper;
 import com.automotive.tracker.model.Vehicle;
 import com.automotive.tracker.repository.VehicleRepository;
 import com.automotive.tracker.services.providers.VinDecoderProvider;
+import com.automotive.tracker.to.providers.VinDecodeInfo;
 import com.automotive.tracker.to.rest.vindecode.VinDecodeDto;
 import com.automotive.tracker.to.rest.vindecode.VinInfoDto;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,9 @@ public class VinDecoderService {
     public VinInfoDto getVinInfo(String vehicleId) {
         String vehicleVin = fetchVehicleVin(vehicleId);
 
-        return Optional.ofNullable(vinDecoderProvider.vinDecodeInfo(decodeInfoUrl, vehicleVin))
+        VinDecodeInfo vinDecodeInfo = vinDecoderProvider.vinDecodeInfo(decodeInfoUrl, vehicleVin);
+
+        return Optional.ofNullable(vinDecodeInfo)
                        .map(vinDecodeInfoMapper::map)
                        .orElseThrow(VehicleNotFoundException.supplyVinDecodeNotFound(vehicleVin));
     }
