@@ -1,7 +1,6 @@
 package com.automotive.tracker.rest;
 
 import com.automotive.tracker.exceptions.VehicleNotFoundException;
-import com.automotive.tracker.services.VehicleService;
 import com.automotive.tracker.services.VinDecoderService;
 import com.automotive.tracker.to.rest.vindecode.VinDecodeDto;
 import com.automotive.tracker.to.rest.vindecode.VinInfoDto;
@@ -16,7 +15,7 @@ public class VinDecoderResource {
 
     private final VinDecoderService vinDecoderService;
 
-    public VinDecoderResource(VehicleService vehicleService, VinDecoderService vinDecoderService) {
+    public VinDecoderResource(VinDecoderService vinDecoderService) {
         this.vinDecoderService = vinDecoderService;
     }
 
