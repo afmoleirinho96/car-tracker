@@ -3,7 +3,7 @@ package com.automotive.tracker.repository;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public interface CrudRepository<T, ID> {
+public interface CrudRepository<T, Id> {
 
     <S extends T> S save(S entity);
 
@@ -11,9 +11,9 @@ public interface CrudRepository<T, ID> {
     Stream<T> findAll();
 
     // avoid the use of null checks
-    Optional<T> findById(ID id);
+    Optional<T> findById(Id id);
 
-    void deleteById(ID id);
+    void deleteById(Id id);
 
     void deleteAll();
 

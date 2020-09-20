@@ -27,6 +27,7 @@ public class VehicleCreator {
         this.vehicleRepository = vehicleRepository;
     }
 
+    @SuppressWarnings("unchecked")
     public void retrieveVehicles() {
         InputStream resource = Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(this.vehicleConfigFile), "UTF-8");
 
@@ -34,7 +35,7 @@ public class VehicleCreator {
             Arrays.stream(objectMapper.readValue(resource, Vehicle[].class))
                   .forEach(this::createVehicle);
         } catch (IOException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
     }
 
