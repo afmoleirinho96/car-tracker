@@ -19,6 +19,8 @@ out/
 ### VS Code ###
 **/.vscode/
 
-
+/gradlew
 /gradlew.bat
 /HELP.md
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
