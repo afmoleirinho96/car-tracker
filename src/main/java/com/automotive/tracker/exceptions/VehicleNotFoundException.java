@@ -26,10 +26,10 @@ public final class VehicleNotFoundException extends RuntimeException {
     }
 
     public static Supplier<CTNotFoundException> supplyVinDecodeNotFound(String vin) {
-        return () -> VinDecodeNotFound(vin);
+        return () -> vinDecodeNotFound(vin);
     }
 
-    public static CTNotFoundException VinDecodeNotFound(String vin) {
+    public static CTNotFoundException vinDecodeNotFound(String vin) {
         return new CTNotFoundException(VIN_DECODE_API_ERROR + VEHICLE_WITH_VIN + vin);
     }
 
