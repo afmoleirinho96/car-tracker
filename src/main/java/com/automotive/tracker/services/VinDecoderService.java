@@ -16,8 +16,8 @@ import java.util.Optional;
 @Service
 public class VinDecoderService {
 
-    private static final String decodeInfoUrl = "/decode/info/";
-    private static final String decodeUrl = "/decode/";
+    private static final String DECODE_INFO_URL = "/decode/info/";
+    private static final String DECODE_URL = "/decode/";
 
     private final VinDecoderProvider vinDecoderProvider;
     private final VehicleRepository vehicleRepository;
@@ -35,7 +35,7 @@ public class VinDecoderService {
     public VinInfoDto getVinInfo(String vehicleId) {
         String vehicleVin = fetchVehicleVin(vehicleId);
 
-        VinDecodeInfo vinDecodeInfo = vinDecoderProvider.vinDecodeInfo(decodeInfoUrl, vehicleVin);
+        VinDecodeInfo vinDecodeInfo = vinDecoderProvider.vinDecodeInfo(DECODE_INFO_URL, vehicleVin);
 
         return Optional.ofNullable(vinDecodeInfo)
                        .map(vinDecodeInfoMapper::map)
@@ -45,7 +45,7 @@ public class VinDecoderService {
     public VinDecodeDto decodeVinInfo(String vehicleId) {
         String vehicleVin = fetchVehicleVin(vehicleId);
 
-        return Optional.ofNullable(vinDecoderProvider.vinDecode(decodeUrl, vehicleVin))
+        return Optional.ofNullable(vinDecoderProvider.vinDecode(DECODE_URL, vehicleVin))
                        .map(vinDecode -> vinDecodeMapper.map(vinDecode, vinDecode.getBalance()))
                        .orElseThrow(VehicleNotFoundException.supplyVinDecodeNotFound(vehicleVin));
     }

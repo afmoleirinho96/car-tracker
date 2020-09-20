@@ -3,7 +3,6 @@ package com.automotive.tracker.mapper;
 import com.automotive.tracker.to.providers.Balance;
 import com.automotive.tracker.to.rest.vindecode.BalanceDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(config = BaseMapperConfig.class)
 public interface BalanceMapper {

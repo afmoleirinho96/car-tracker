@@ -24,7 +24,7 @@ public class VinDecoderResource {
         VinInfoDto vinInfo = vinDecoderService.getVinInfo(vehicleId);
 
         if (vinInfo.getVinInfo() == null) {
-            throw VehicleNotFoundException.VinDecodeNotFound(vehicleId);
+            throw VehicleNotFoundException.vinDecodeNotFound(vehicleId);
         }
 
         return vinInfo;
@@ -35,7 +35,7 @@ public class VinDecoderResource {
         VinDecodeDto vinDecode = vinDecoderService.decodeVinInfo(vehicleId);
 
         if (vinDecode.getVinDecode() == null) {
-            throw VehicleNotFoundException.VinDecodeNotFound(vehicleId);
+            throw VehicleNotFoundException.vinDecodeNotFound(vehicleId);
         }
 
         return vinDecoderService.decodeVinInfo(vehicleId);
