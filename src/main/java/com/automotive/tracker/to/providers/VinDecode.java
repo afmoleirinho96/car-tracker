@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 @Json
+@SuppressWarnings("java:S116")
 public class VinDecode {
 
     private String price;

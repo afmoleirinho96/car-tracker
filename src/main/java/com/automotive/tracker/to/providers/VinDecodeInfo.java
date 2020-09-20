@@ -3,6 +3,7 @@ package com.automotive.tracker.to.providers;
 import lombok.Data;
 
 @Data
+@SuppressWarnings("java:S116")
 public class VinDecodeInfo {
 
     private String price;
