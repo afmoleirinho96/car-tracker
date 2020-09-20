@@ -20,7 +20,6 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     public <S extends Vehicle> S save(S entity) {
         String vehicleId = String.valueOf(currentId.getAndIncrement());
         entity.setId(vehicleId);
-        System.out.println(entity);
         store.put(vehicleId, entity);
         return entity;
     }

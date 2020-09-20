@@ -3,7 +3,6 @@ package com.automotive.tracker.rest;
 import com.automotive.tracker.exceptions.VehicleNotFoundException;
 import com.automotive.tracker.mapper.VehicleMapper;
 import com.automotive.tracker.model.Vehicle;
-import com.automotive.tracker.repository.VehicleRepository;
 import com.automotive.tracker.services.VehicleService;
 import com.automotive.tracker.to.rest.VehicleDto;
 import org.springframework.http.HttpStatus;
@@ -20,8 +19,7 @@ public class VehicleResource {
     private final VehicleService vehicleService;
     private final VehicleMapper vehicleMapper;
 
-    public VehicleResource(VehicleService vehicleService, VehicleMapper vehicleMapper,
-                           VehicleRepository vehicleRepository) {
+    public VehicleResource(VehicleService vehicleService, VehicleMapper vehicleMapper) {
         this.vehicleService = vehicleService;
         this.vehicleMapper = vehicleMapper;
     }

@@ -2,11 +2,12 @@ package com.automotive.tracker.exceptions;
 
 import java.util.function.Supplier;
 
-public final class VehicleNotFoundException {
+public final class VehicleNotFoundException extends RuntimeException {
 
     private static final String VEHICLE_WITH_VIN = "Vehicle with Vin ";
     private static final String VEHICLE_WITH_ID = "Vehicle with id ";
     private static final String DOES_NOT_EXIST = " does not exist";
+    private static final String VIN_DECODE_API_ERROR = "VIN Decode API was unable to retrieve info for ";
 
     public static Supplier<CTNotFoundException> supplyVehicleNotFound(String vehicleId) {
         return () -> vehicleNotFound(vehicleId);
@@ -29,7 +30,7 @@ public final class VehicleNotFoundException {
     }
 
     public static CTNotFoundException VinDecodeNotFound(String vin) {
-        return new CTNotFoundException("Vin Decode for" + VEHICLE_WITH_VIN + " " + vin + DOES_NOT_EXIST);
+        return new CTNotFoundException(VIN_DECODE_API_ERROR + VEHICLE_WITH_VIN + vin);
     }
 
 }
