@@ -18,8 +18,10 @@ public class VehicleCreator {
     private final ObjectMapper objectMapper;
     private final VehicleRepository vehicleRepository;
 
-    public VehicleCreator(
-            @Value("${com.automotive.vehicleTracker.services.vehicleConfigFile}") String vehicleConfigFile, ObjectMapper objectMapper, VehicleRepository vehicleRepository) {
+    public VehicleCreator(@Value("${automotive.vehicleTracker.services.vehicleConfigFile}") String vehicleConfigFile,
+                          ObjectMapper objectMapper,
+                          VehicleRepository vehicleRepository
+    ) {
         this.vehicleConfigFile = vehicleConfigFile;
         this.objectMapper = objectMapper;
         this.vehicleRepository = vehicleRepository;
@@ -30,7 +32,7 @@ public class VehicleCreator {
 
         try {
             Arrays.stream(objectMapper.readValue(resource, Vehicle[].class))
-                    .forEach(this::createVehicle);
+                  .forEach(this::createVehicle);
         } catch (IOException e) {
             e.printStackTrace();
         }

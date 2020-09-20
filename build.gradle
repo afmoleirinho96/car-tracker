@@ -29,6 +29,9 @@ dependencies {
 	}
 	implementation 'org.mapstruct:mapstruct:1.4.0.CR1'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.0.CR1'
+	implementation 'commons-codec:commons-codec:1.13'
+	implementation('org.springframework.boot:spring-boot-starter-web')
+
 }
 
 test {
