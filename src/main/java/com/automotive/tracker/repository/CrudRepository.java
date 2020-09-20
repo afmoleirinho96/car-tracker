@@ -3,7 +3,8 @@ package com.automotive.tracker.repository;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public interface CrudRepository<T, Id> {
+@SuppressWarnings("squid:S00119")
+public interface CrudRepository<T, ID> {
 
     <S extends T> S save(S entity);
 
@@ -11,9 +12,9 @@ public interface CrudRepository<T, Id> {
     Stream<T> findAll();
 
     // avoid the use of null checks
-    Optional<T> findById(Id id);
+    Optional<T> findById(ID id);
 
-    void deleteById(Id id);
+    void deleteById(ID id);
 
     void deleteAll();
 
