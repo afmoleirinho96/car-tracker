@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
@@ -18,7 +19,8 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
     @Override
     public <S extends Vehicle> S save(S entity) {
-        String vehicleId = String.valueOf(currentId.getAndIncrement());
+        String vehicleId = String.valueOf(UUID.randomUUID());
+
         entity.setId(vehicleId);
         store.put(vehicleId, entity);
         return entity;
