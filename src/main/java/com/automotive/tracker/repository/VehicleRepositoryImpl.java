@@ -8,42 +8,34 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 
 @Repository
 public class VehicleRepositoryImpl implements VehicleRepository {
 
-    private final Map<String, Vehicle> store = new ConcurrentHashMap<>();
-    private final AtomicLong currentId = new AtomicLong(0);
+    private final Map<String, Vehicle> storage = new ConcurrentHashMap<>();
 
     @Override
     public <S extends Vehicle> S save(S entity) {
         String vehicleId = String.valueOf(UUID.randomUUID());
-
         entity.setId(vehicleId);
-        store.put(vehicleId, entity);
+        storage.put(vehicleId, entity);
+
         return entity;
     }
 
     @Override
     public Stream<Vehicle> findAll() {
-        return store.values().stream().filter(Objects::nonNull);
+        return storage.values().stream().filter(Objects::nonNull);
     }
 
     @Override
     public Optional<Vehicle> findById(String id) {
-        return Optional.ofNullable(store.get(id));
+        return Optional.ofNullable(storage.get(id));
     }
 
     @Override
     public void deleteById(String id) {
-        store.remove(id);
+        storage.remove(id);
     }
-
-    @Override
-    public void deleteAll() {
-        store.clear();
-    }
-
 }

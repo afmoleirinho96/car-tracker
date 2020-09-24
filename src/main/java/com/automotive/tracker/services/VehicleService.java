@@ -21,7 +21,7 @@ public class VehicleService {
         return vehicleRepository.findAll();
     }
 
-    public Optional<Vehicle> getVehicleById(String vehicleId) {
+    public Optional<Vehicle> getVehicle(String vehicleId) {
         return vehicleRepository.findById(vehicleId);
     }
 
@@ -29,18 +29,17 @@ public class VehicleService {
         return vehicleRepository.save(vehicle);
     }
 
-    /*
-        Could do in a easier, throwing supplyException if vehicle not found,
-        otherwise delegating repository to delete it, without returning the vehicle erased.
-     */
-    public Vehicle deleteVehicleById(String vehicleId) {
-        Optional<Vehicle> vehicle = vehicleRepository.findById(vehicleId);
+    public void updateVehicleVin(String vehicleId, String vin) {
+        Vehicle vehicle = getVehicle(vehicleId)
+            .orElseThrow(VehicleNotFoundException.supplyVehicleNotFound(vehicleId));
 
-        if (vehicle.isPresent()) {
-            vehicleRepository.deleteById(vehicle.get().getId());
-            return vehicle.get();
+        vehicle.setVin(vin);
+    }
+
+    public void deleteVehicle(String vehicleId) {
+        if (!getVehicle(vehicleId).isPresent()) {
+            throw VehicleNotFoundException.vehicleNotFound(vehicleId);
         }
-
-        throw (VehicleNotFoundException.vehicleNotFound(vehicleId));
+        vehicleRepository.deleteById(vehicleId);
     }
 }

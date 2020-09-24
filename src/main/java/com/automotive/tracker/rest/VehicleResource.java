@@ -6,7 +6,6 @@ import com.automotive.tracker.model.Vehicle;
 import com.automotive.tracker.services.VehicleService;
 import com.automotive.tracker.to.rest.VehicleDto;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,19 +32,27 @@ public class VehicleResource {
 
     @GetMapping(path = "{id}")
     public VehicleDto getVehicle(@PathVariable String id) {
-        return vehicleService.getVehicleById(id)
+        return vehicleService.getVehicle(id)
                              .map(vehicleMapper::map)
                              .orElseThrow(VehicleNotFoundException.supplyVehicleNotFound(id));
     }
 
     @PostMapping
-    public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
-        return new ResponseEntity<>(vehicleService.createVehicle(vehicle), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
+        return vehicleService.createVehicle(vehicle);
     }
 
     @DeleteMapping(path = "{id}")
-    public ResponseEntity<Vehicle> deleteVehicle(@PathVariable String id) {
-        return new ResponseEntity<>(vehicleService.deleteVehicleById(id), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteVehicle(@PathVariable String id) {
+        vehicleService.deleteVehicle(id);
+    }
+
+    @PatchMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateVehicleVin(@PathVariable String id, @RequestBody String vin) {
+        vehicleService.updateVehicleVin(id, vin);
     }
 
 }
